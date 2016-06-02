@@ -56,7 +56,7 @@ public class LoginController {
 			parseMap.put("#FN", currentUser.getFirstName());
 			parseMap.put("#LN", currentUser.getLastName());
 			
-			String filenName = "C:/Users/Daniel Fischer/my_git_repos/1603_Mar28_Java/Daniel_August_Code/Lulu_Cupcakes/LuluCupcakeService/src/main/resources/registerEmailTemplate.html";
+			String filenName = "src/main/resources/registerEmailTemplate.html";
 			String parseString = MailService.parseEmailTemplate(parseMap, filenName);
 			MailService.SendMail(currentUser.getUsername(), parseString, "Your new Lulu's Cupcake Bakery Account.");
 		} catch (IOException e) {

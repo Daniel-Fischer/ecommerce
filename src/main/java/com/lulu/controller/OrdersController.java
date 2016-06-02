@@ -68,9 +68,9 @@ public class OrdersController {
 			parseMap.put("#TC", Double.toString(order.getTotalCost()));
 			parseMap.put("#PI", "####-####-####-"+new String(order.getPayment().getCcn()).substring(12));
 			parseMap.put("#OID", id);	
-			String filenName = "C:/Users/Daniel Fischer/my_git_repos/1603_Mar28_Java/Daniel_August_Code/Lulu_Cupcakes/LuluCupcakeService/src/main/resources/newOrderEmailTemplate.html";
+			String filenName = "src/main/resources/newOrderEmailTemplate.html";
 			String parseString = MailService.parseEmailTemplate(parseMap, filenName);
-			MailService.SendMail(order.getPayment().getEmail(), parseString, "Your new Lulu's Cupcake Bakery Account.");
+			MailService.SendMail(order.getPayment().getEmail(), parseString, "Your Cupcake Order Details");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
