@@ -1,5 +1,6 @@
 package com.lulu.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +57,8 @@ public class LoginController {
 			parseMap.put("#FN", currentUser.getFirstName());
 			parseMap.put("#LN", currentUser.getLastName());
 			
-			String filenName = "src/main/resources/registerEmailTemplate.html";
+			String filenName = this.getClass().getClassLoader().getResource("registerEmailTemplate.html").getPath();
+			filenName = filenName.replaceAll("%20", " ");
 			String parseString = MailService.parseEmailTemplate(parseMap, filenName);
 			MailService.SendMail(currentUser.getUsername(), parseString, "Your new Lulu's Cupcake Bakery Account.");
 		} catch (IOException e) {

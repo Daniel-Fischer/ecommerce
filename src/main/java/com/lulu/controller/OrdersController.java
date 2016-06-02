@@ -68,7 +68,8 @@ public class OrdersController {
 			parseMap.put("#TC", Double.toString(order.getTotalCost()));
 			parseMap.put("#PI", "####-####-####-"+new String(order.getPayment().getCcn()).substring(12));
 			parseMap.put("#OID", id);	
-			String filenName = "src/main/resources/newOrderEmailTemplate.html";
+			String filenName = this.getClass().getClassLoader().getResource("newOrderEmailTemplate.html").getPath();
+			filenName = filenName.replaceAll("%20", " ");
 			String parseString = MailService.parseEmailTemplate(parseMap, filenName);
 			MailService.SendMail(order.getPayment().getEmail(), parseString, "Your Cupcake Order Details");
 		} catch (IOException e) {
