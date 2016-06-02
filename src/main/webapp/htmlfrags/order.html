@@ -1,0 +1,38 @@
+
+<div ng-controller="orderCtrl as order" class="well">
+<a href="#" ui-sref="orders" class="btn btn-primary" ng-show="order.currentUser.loggedin">	&#171; Go Back</a>
+<div class="page-header text-center">
+<h3>Order Information:</h3>
+</div>
+<div class="progress">
+<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" ng-style="{width : ( order.currentStatusPercent + '%' ) }">
+{{order.cupcakes[0].order.status}}
+</div>
+</div>
+<p>Store Location :&nbsp;{{order.cupcakes[0].order.store.address.street}},&nbsp; {{order.cupcakes[0].order.store.address.city}},&nbsp; {{order.cupcakes[0].order.store.address.state}}</p>
+<p>Order Status :&nbsp;{{order.cupcakes[0].order.status}} <btn ng-hide="order.cupcakes[0].order.status =='Delivered' || order.cupcakes[0].order.status =='Picked Up' || order.cupcakes[0].order.status =='Cancelled'" class="btn btn-large btn-danger" ng-click="order.doCancel()">Cancel Order?</btn>
+<span ng-show="order.recentlyCancelled" class="Fade alert alert-danger">Your order has been cancelled, Please shop again soon!</span>
+</p>
+<table class="table">
+<thead>
+	<tr>
+		<td>Batter</td>
+		<td>Frosting</td>
+		<td>Cup</td>
+		<td>Sprinkle</td>
+		<td>Quantity</td>
+		<td>Total Cost</td>
+	</tr>
+</thead>
+<tbody>
+	<tr ng-repeat="cupcake in order.cupcakes">
+		<td>{{cupcake.batter.description}}</td>
+		<td>{{cupcake.frosting.description}}</td>
+		<td>{{cupcake.cup.description}}</td>
+		<td>{{cupcake.sprinkle.description}}</td>
+		<td>{{cupcake.qty}}</td>
+		<td>{{cupcake.cost | currency}}</td>
+	</tr>
+</tbody>
+</table>
+</div>

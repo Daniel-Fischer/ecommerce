@@ -1,0 +1,100 @@
+<div class="container" ng-controller="FinishOrder as finishCtrl"
+	ng-init="finishCtrl.init()">
+	<div class="well">
+	<h4>Order Information (all fields are required)</h4>
+		<form name="orderform" class="form" novalidate>
+		<h4 class="page-header">Pickup or Delivery?</h4>
+		<div ng-repeat="t in ['Pick Up', 'Delivery']">
+			<label><input type="radio" name="type"
+				ng-model="finishCtrl._pageInfo.currType.type" ng-value="t" required>{{t}}</label>
+
+		</div>
+		<h4 class="page-header">Choose a store location</h4>
+		<div ng-repeat="s in finishCtrl._pageInfo.stores">
+			<label><input type="radio" name="store"
+				ng-model="finishCtrl._pageInfo.currStore" ng-value="s" required>{{s.address.street}}
+				{{s.address.city}}, {{s.address.state}} {{s.address.zip}}</label>
+		</div>
+		
+		<div ng-hide="finishCtrl.notAnonUser()" class="form form-inline">
+			<h4 class="page-header">User Information</h4>
+			<div>
+				<label>Email: </label>
+				<input name="email" class="form-control" type="email" ng-model="finishCtrl._pageInfo.currPayment.email" required/>
+			</div>
+		</div>
+
+		<div
+			ng-show="finishCtrl._pageInfo.shippingInfo.length && finishCtrl._pageInfo.currType.type === 'Delivery'">
+			<h4 class="page-header">Choose a shipping address</h4>
+			<div ng-repeat="l in finishCtrl._pageInfo.shippingInfo">
+				<label><input type="radio" name="shipping"
+					ng-model="finishCtrl._pageInfo.currShipping" ng-value="l" required/>{{l.address.street}}
+					{{l.address.city}}, {{l.address.state}} {{l.address.zip}}</label>
+			</div>
+		</div>
+
+		<div
+			ng-hide="finishCtrl._pageInfo.currType.type !== 'Delivery' && finishCtrl._pageInfo.currShipping">
+			<h4 class="page-header">Add a shipping address</h4>
+			<div class="form form-inline">
+				<label>Street Address</label> <input name="street" type="text"
+					class="form-control"
+					ng-model="finishCtrl._pageInfo.currShipping.address.street" required/> <label>City</label>
+				<input name="city" type="text" class="form-control"
+					ng-model="finishCtrl._pageInfo.currShipping.address.city" required/> <label>State</label>
+				<select name="state" class="form-control"
+					ng-model="finishCtrl._pageInfo.currShipping.address.state"
+					ng-options="s for s in ['VA', 'MD']"></select> <label>Postal
+					Code</label> <input name="zip" type="text" class="form-control"
+					ng-model="finishCtrl._pageInfo.currShipping.address.zip" required/>
+			</div>
+		</div>
+
+		<div ng-show="finishCtrl._pageInfo.payments.length">
+			<h4 class="page-header">Choose a payment type</h4>
+			<div ng-repeat="c in finishCtrl._pageInfo.payments">
+				<label><input type="radio" name="payment"
+					ng-model="finishCtrl._pageInfo.currPayment" ng-value="c" required/>Credit
+					Card: {{c.ccn | ccn}}</label>
+			</div>
+		</div>
+		<div>
+			<h4 class="page-header">Add a payment type</h4>
+			<div class="form form-inline">
+				<label>Card Number</label> <input name="ccn"type="text" class="form-control"
+					ng-model="finishCtrl._pageInfo.currPayment.ccn" maxlength="16" required/> <label>CCV</label>
+				<input name="ccv" type="text" class="form-control"
+					ng-model="finishCtrl._pageInfo.currPayment.ccv" maxlength="3" required/>
+			</div>
+		</div>
+		<div>
+			<h4 class="page-header">Order Information</h4>
+			<p>
+				<label>Order For:&nbsp;</label>{{finishCtrl._pageInfo.currType.type}}
+			</p>
+			<p>
+				<label>Order From:&nbsp;</label>{{finishCtrl._pageInfo.currStore.address.street}}&nbsp;
+				{{finishCtrl._pageInfo.currStore.address.city}},&nbsp;
+				{{finishCtrl._pageInfo.currStore.address.state}}&nbsp;
+				{{finishCtrl._pageInfo.currStore.address.zip}}
+			</p>
+			<p ng-show="finishCtrl._pageInfo.currType.type === 'Delivery'">
+				<label>Ship To:&nbsp;</label>
+				{{finishCtrl._pageInfo.currShipping.address.street}}&nbsp;
+				{{finishCtrl._pageInfo.currShipping.address.city}},&nbsp;
+				{{finishCtrl._pageInfo.currShipping.address.state}}&nbsp;
+				{{finishCtrl._pageInfo.currShipping.address.zip}}
+			</p>
+			<p>
+				<label>Pay With:&nbsp;</label>{{finishCtrl._pageInfo.currPayment.ccn |
+				ccn}}
+			</p>
+			<p><label>Total Cost: {{finishCtrl.orderTotal() | currency}}</label></p>
+		</div>
+		<div>
+			<btn class="btn btn-primary" ng-disabled="!finishCtrl.validOrder()" ng-click="finishCtrl.validOrder() ? finishCtrl.submit() : ''">Submit Order</btn>
+		</div>
+		</form>
+	</div>
+</div>

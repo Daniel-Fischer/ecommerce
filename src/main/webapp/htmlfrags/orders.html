@@ -1,0 +1,33 @@
+<div ng-controller="viewOrdersCtrl as orderctrl" class="well">
+<div class="page-header text-center">
+<h2>Order History</h2>
+</div>
+<table class="table">
+	<thead>
+	<tr>
+		<th>Order Status</th>
+		<th>Store Location</th>
+		<th>Type</th>
+		<th>Shipping Address</th>
+		<th>Order Time</th>
+		<th>Total Cost</th>
+		<th>Credit Card</th>
+		<th>View Details</th>
+	</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat ="order in orderctrl.orders">
+			<td>{{order.status}}</td>
+			<td>{{order.store.address.street}},{{order.store.address.city}},{{order.store.address.state}},{{order.store.address.zip}}</td>
+			<td>{{order.type.type}}</td>
+			<td ng-show="order.type.type == 'Delivery'">{{order.shipping.address.street}},{{order.shipping.address.city}},{{order.shipping.address.state}},{{order.shipping.address.zip}}</td>
+			<td ng-hide="order.type.type == 'Delivery'">N/A</td>
+			<td>{{order.timestamp|date}}</td>
+			<td>{{order.totalCost | currency}}</td>
+			<td>{{order.payment.ccn|ccn}}</td>
+			<td><a href="#" class="btn btn-info" ui-sref="order({orderId:order.id})">view</a></td>
+		</tr>
+	</tbody>
+
+</table>
+</div>

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="Navbar as navbarCtrl">
+<div class = "container-fluid">
+	<div class="navbar-header">
+		<a ui-sref="home" class="navbar-brand">LuLu's Cupcakes</a>
+	</div>
+	<ul class="nav navbar-nav">
+	<li><a ui-sref="neworder">Shop</a></li>
+	<li><a ui-sref="mycart"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Cart
+	<span class="badge" ng-bind="navbarCtrl.cartItems()"></span></a>
+	<li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+	<li><a ng-click="navbarCtrl.toggleLoginForm()" ng-hide="navbarCtrl.loginNeeded()">Login</a></li>
+	<li><a ui-sref="register" ng-hide="navbarCtrl.loginNeeded()">Register</a></li>
+	<li><a ng-click="navbarCtrl.doLogout()" ng-show="navbarCtrl.loginNeeded()">Logout</a></li>
+	<li><a ui-sref="orders" ng-show="navbarCtrl.loginNeeded()">View Orders</a></li>
+	<li><a ui-sref="account" ng-show="navbarCtrl.loginNeeded()">My Account</a></li>
+	</ul>
+	<form ng-show="navbarCtrl.isDoingLogin() && !navbarCtrl.loginNeeded()" class="col-xl-6 pull-right form-inline">
+		<fieldset class="form-group col-xl-3">
+			<label for="email" class="label label-default">Username</label>
+			<input type="email" name="email" placeholder= "email@mail.com" class="form-control" ng-model="navbarCtrl.username" enterpress="navbarCtrl.doLogin()"/>
+		</fieldset>
+		<fieldset class="form-group col-xl-3">
+			<label for="password" class="label label-default">Password</label>
+			<input class="form-control" type="password" name="password" placeholder="****" ng-model="navbarCtrl.password" enterpress="navbarCtrl.doLogin()"/>
+		</fieldset>
+	</form>
+</div>
+</nav>

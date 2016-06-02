@@ -1,0 +1,44 @@
+<div ng-controller="MyCart as cartCtrl" class="container">
+	<div class="well" ng-hide="cartCtrl.cupcakes().length > 0">
+		<div class="page-header text-center"> <h1>Shopping Cart</h1></div>
+		<h3 class="text-center page-header"><a ui-sref="neworder" class="btn btn-primary btn-lg">You have nothing in your cart. Click here to begin shopping and add something delicious.</a></h3>
+	</div>
+	<ul ng-show="cartCtrl.cupcakes().length > 0" class="list-group well">
+		<div class="page-header text-center"> <h1>Shopping Cart</h1></div>
+		<li class="list-group-item" ng-repeat="cupcake in cartCtrl.cupcakes() track by $index">
+			<div class="ingred-img-list">
+				<div class="ingred-imgs page-header">
+					<img ng-show="cupcake.sprinkle.src != '' && cupcake.sprinkle.description != 'None'" ng-src="{{cupcake.sprinkle.src}}"
+						style="width: 64px; height: 64px; display: inline" /> <img
+						ng-show="cupcake.frosting.src != '' && cupcake.frosting.description != 'None'" ng-src="{{cupcake.frosting.src}}"
+						style="width: 64px; height: 64px; display: inline" /> <img
+						ng-src="{{cupcake.batter.src}}"
+						style="width: 64px; height: 64px; display: inline" /> <img
+						ng-src="{{cupcake.cup.src}}"
+						style="width: 64px; height: 64px; display: inline" /> <a
+						class="btn btn-primary pull-right" ng-click="cartCtrl.remove($index)">Remove</a>
+				</div>
+				<div class="cart-ingreds page-header">
+					<p>
+						<label>{{cupcake.qty}} X </label>&nbsp;<label>{{cupcake.batter.description}}</label>&nbsp;cupcakes
+						with&nbsp;
+					</p>
+					<div class="cart-ingredient-list" style="padding-left: 20px;">
+						<p ng-show="cupcake.frosting.description != ''" class="cart-ingredient-list-item">
+							<label>>{{cupcake.frosting.description}} frosting</label>
+						</p>
+						<p ng-show="cupcake.sprinkle.description != ''" class="cart-ingredient-list-item">
+							<label>>{{cupcake.sprinkle.description}} sprinkles</label>
+						</p>
+						<p class="cart-ingredient-list-item">
+							<label>>{{cupcake.cup.description}} cups</label>
+						</p>
+					</div>
+				</div>
+				<label>Cupcake Total: {{cupcake.cost | currency}}</label>
+			</div>
+		</li>
+	</ul>
+	<div ng-show="cartCtrl.cupcakes().length" class="btn btn-primary" ng-click="cartCtrl.submit()">Confirm
+		Order</div>
+</div>

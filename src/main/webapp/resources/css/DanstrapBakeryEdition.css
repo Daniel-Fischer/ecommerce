@@ -1,0 +1,133 @@
+@CHARSET "ISO-8859-1";
+.ng-hide-add, .ng-hide-remove {
+    /* ensure visibility during the transition */
+    display: block !important; /* yes, important */
+}
+.Fade {
+    transition: 7.0s linear all;
+    opacity: 0;
+}
+.Fade.ng-hide {
+    opacity: 1;
+}
+.carousel-inner{
+/* 	width:100px;
+ */	height:100%;
+}
+input.ng-invalid{
+	border-color: red;
+	border-width: 2px;
+}
+input.ng-valid{
+	border-color: green;
+}
+error>div.row{
+	margin-left:10px;
+	width: %100;
+}
+error>div>span{
+	background-color:#fff;
+}
+div.btn{
+	text-align: left;
+}
+.accordion-toggle{
+	display:block;
+}
+.container .text-muted {
+    margin: 20px;
+    color:#A26EB1;
+}
+.badge{
+	background-color:#724480;
+}
+a{
+	color:#724480;
+}
+.panel-default>.panel-heading, li.list-group-item, select.form-control{
+    background-color: #FFA0C9;
+    color:#fff;
+}
+.btn-primary{
+	background-color:#A26EB1;
+	border-color:#A26EB1;
+}
+.btn-primary:hover, .btn-primary.disabled.focus, .btn-primary.disabled:focus,
+ .btn-primary.disabled:hover, .btn-primary[disabled].focus, .btn-primary[disabled]:focus,
+  .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary.focus, fieldset[disabled] .btn-primary:focus,
+   fieldset[disabled] .btn-primary:hover{
+	background-color:#FFA0C9;
+	border-color:#A26EB1;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    height:60px;
+    margin-bottom:0px;
+    background-color: #FFA0C9;
+}
+#footer
+{
+    background-color:red;
+    position:fixed;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    height:50px;
+    margin-bottom:0px;
+}
+.well{
+	opacity:0.8;
+	margin-top:75px;
+	border-color:#FFA0C9;
+	background-color:#DE4989;
+	color:#fff !important;
+}
+.page-header{
+	margin-top:20px;
+}
+.panel-default{
+	border-color:#FFA0C9;
+}
+div.panel-body{
+    background-color: #DE4989;
+    border-color:#FFA0C9;
+}
+.ingred-thumb.btn.btn-default.btn-block.ng-binding.ng-scope{
+	background-color:#FFA0C9;
+	color:#fff;
+}
+li.list-group-item{
+	color:#fff;
+}
+.text-success, .text-danger{
+	color:#DE4989 !important;
+}
+.alert-success{
+	background-color:#fff;
+}
+body{
+	margin-top:100px;
+    background-image: url("../images/cupcake-bkgrnd.jpg");
+    background-size: 100% auto;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+    margin-bottom: 100px;
+}
+nav{
+	background-color: #FFA0C9 !important;
+    font-family:Georgia;
+}
+.navbar-header>a, .navbar-nav>li>a{
+	color: #fff !important;
+}
+form.col-xl-6.pull-right.form-inline{
+	margin-top: 7px;
+}
+.label-default{
+	background-color: #A26EB1;
+}

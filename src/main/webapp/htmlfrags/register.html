@@ -1,0 +1,31 @@
+<div class="well well-lg col-sm-8 col-sm-offset-2" ng-controller="Register as registerCtrl" ng-init="registerCtrl.resetError()">
+	<div class="col-sm-offset-1"><error></error></div>
+	<div class="page-header text-center">
+		<h1>Register</h1>
+	</div>
+	<form name="registerForm" class="col-sm-8 col-sm-offset-2" novalidate>
+		<fieldset class="form-group">
+			<label for="email">Email</label>
+			<input type="email" name="email" class="form-control" ng-model="registerCtrl.username" ng-model-options="{getterSetter: true}" required/>
+		</fieldset>
+		<fieldset class="form-group">
+			<label for="password">Password</label>
+			<input type="password" name="password" class="form-control" ng-model="registerCtrl.password" ng-model-options="{getterSetter: true}" required/>
+		</fieldset>
+		<fieldset class="form-group">
+			<label for="fname">First Name</label>
+			<input type="text" name="fname" class="form-control" ng-model="registerCtrl.firstName" ng-model-options="{getterSetter: true}" required/>
+		</fieldset>
+		<fieldset class="form-group">
+			<label for="lname">Last Name</label>
+			<input type="lname" name="text" class="form-control" ng-model="registerCtrl.lastName" ng-model-options="{getterSetter: true}" required/>
+		</fieldset>
+		<fieldset class="pull-left">
+			<span>Already a member?&nbsp;</span><a ui-sref="login">Login</a>
+		</fieldset>
+		<fieldset class="pull-right">
+			<img ng-show="registerCtrl.isRegistering()" src="resources/images/hourglass.gif" style="width:40px; height: 40px;"/>
+			<btn class="btn btn-primary" ng-click="registerCtrl.doRegister()" ng-disabled="registerForm.$invalid">Register</btn>
+		</fieldset>
+	</form>
+</div>

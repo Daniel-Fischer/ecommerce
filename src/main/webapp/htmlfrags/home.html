@@ -1,0 +1,26 @@
+<div class="well col-sm-5 col-sm-offset-1" style="margin-top:0px;">
+<h3 class="page-header">Local Citizen Review</h3>
+<p>
+	I made the mistake of only ordering 6 cupcakes,
+	I imediately placed an order for 6 more!
+</p>
+<p>
+	Rating: 5/5
+</p>
+</div>
+<div class="col-sm-5 col-sm-offset-2"></div>
+<div class="well col-sm-5 col-sm-offset-1" style="margin-top:0px;">
+<div class="page-header col-sm-12">
+<h3>Recent Products</h3>
+</div>
+<div class="col-sm-8"></div>
+<div class="col-sm-10 col-sm-offset-1">
+	<div ng-controller="carouselCtrl">
+	    <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+	      <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+	        <img ng-src="{{slide.image}}" style="margin:auto;width:240px;height:240px;">
+	      </uib-slide>
+	    </uib-carousel>
+	</div>
+</div>
+</div>

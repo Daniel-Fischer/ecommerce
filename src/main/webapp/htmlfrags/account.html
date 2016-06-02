@@ -1,0 +1,40 @@
+<div class="col-sm-6 col-sm-offset-3" ng-controller = "viewAccountCtrl as account">
+<div ng-show="account.error" class="row col-sm-6 col-sm-offset-3">
+	<img class="pull-left" src="resources/images/err_cupcake.jpg"
+		style="width: 40px; height: 40px;" />
+	<span class = "text-danger">{{account.error}}</span>
+	<img src="resources/images/err_cupcake.jpg"
+		style="width: 40px; height: 40px;" />
+</div>
+<div ng-show="account.success" class="row col-sm-8 col-sm-offset-2">
+	<img class="pull-left" src="resources/images/err_cupcake.jpg"
+		style="width: 40px; height: 40px;" />
+	<span class = "text-success">{{account.success}}</span>
+	<img src="resources/images/err_cupcake.jpg"
+		style="width: 40px; height: 40px;" />
+</div>
+<div class="well">
+<div class="page-header text-center">
+<h1>Edit Information</h1>
+</div>
+<form novalidate>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input required type="email" id="exampleInputEmail1" class="form-control" id="" placeholder="Enter email" ng-model="account.newinfo.username">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputFName">First Name</label>
+        <input required type="text" class="form-control" id="exampleInputFName" ng-model="account.newinfo.firstName">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputLName">Last Name</label>
+        <input required type="text" class="form-control" id="exampleInputLName" ng-model="account.newinfo.lastName">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Confirm Password</label>
+        <input required type="password" class="form-control" id ="exampleInputPassword1" ng-model="account.checkPassword" placeholder="Password" ng-model="vm.user.password">
+    </div>
+    <button type="submit" class="btn btn-default" ng-click="account.submit()">Submit</button>
+</form>
+</div>
+</div>

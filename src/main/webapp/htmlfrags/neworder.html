@@ -1,0 +1,80 @@
+<div class="row" ng-controller="NewOrder as cupcakeCtrl"
+	ng-init="cupcakeCtrl.initialize()">
+	<div class="col-xs-8 well">
+		<div class="text page-header text-center"
+			ng-show="cupcakeCtrl.orderSize() == 0"><h2>Selected Cupcake Options</h2></div>
+		<div class="row">
+			<div class="form-inline pull-right">
+				<label for="quantity">QTY:</label>
+				<select class="form-control" ng-model="cupcakeCtrl.customChoices.qty" ng-options="n for n in [6, 12, 18, 24, 30, 36, 42, 48]">
+				</select>
+			</div>
+		</div> 
+		<div class="row">
+			<ul class="list-group">
+				<li class="list-group-item" ng-show="cupcakeCtrl.sprinkleChoice().description && cupcakeCtrl.sprinkleChoice().description != 'None'">
+					<img ng-src="{{cupcakeCtrl.sprinkleSrc()}}" style="width: 50px; height: 50px; display: inline"/>
+					<span>{{cupcakeCtrl.sprinkleChoice().description}}</span>
+					<span class="pull-right">{{cupcakeCtrl.sprinkleChoice().costMod | currency}}</span>
+				</li>
+				<li class="list-group-item" ng-show="cupcakeCtrl.frostingChoice().description && cupcakeCtrl.frostingChoice().description != 'None'">
+					<img ng-src="{{cupcakeCtrl.frostingSrc()}}" style="width: 50px; height: 50px; display: inline"/>
+					<span>{{cupcakeCtrl.frostingChoice().description}}</span>
+					<span class="pull-right">{{cupcakeCtrl.frostingChoice().costMod | currency}}</span>
+				</li>
+				<li class="list-group-item" ng-show="cupcakeCtrl.batterChoice().description">
+					<img ng-src="{{cupcakeCtrl.batterSrc()}}" style="width: 50px; height: 50px; display: inline"/>
+					<span>{{cupcakeCtrl.batterChoice().description}}</span>
+					<span class="pull-right">{{cupcakeCtrl.batterChoice().costMod | currency}}</span>
+					
+				</li>
+				<li class="list-group-item" ng-show="cupcakeCtrl.cupChoice().description">
+					<img ng-src="{{cupcakeCtrl.cupSrc()}}" style="width: 50px; height: 50px; display: inline"/>
+					<span>{{cupcakeCtrl.cupChoice().description}}</span>
+					<span class="pull-right">{{cupcakeCtrl.cupChoice().costMod | currency}}</span>
+				</li>
+			</ul>
+		</div>
+		<div class="pull-right row">
+			<label class="cost-total">Total: {{cupcakeCtrl.cupcakeTotal() || 0.00 | currency}}</label>
+			<a class="btn btn-primary" ng-disabled="cupcakeCtrl.itemValid()" ng-click="cupcakeCtrl.add()">Add to cart</a>
+		</div>
+	</div>
+	<div class="col-xs-4 well">
+		<div class="text text-center"><h3>Customize your cupcake</h3></div>
+		<uib-accordion close-others="cupcakeCtrl.accordion.oneAtATime">
+		<uib-accordion-group heading="Batters">
+		<div class="btn-group">
+			<div ng-repeat="item in cupcakeCtrl.customChoices.batters" class="ingred-thumb btn btn-default btn-block"
+				ng-click="cupcakeCtrl.batterChoice(item.description, item.id)">
+				<img ng-src="{{cupcakeCtrl.batterSrc(item.description)}}"
+					style="width: 50px; height: 50px; display: inline" uib-btn-checkbox>{{item.description}}</img>
+			</div>
+		</div>
+		</uib-accordion-group> <uib-accordion-group heading="Frostings">
+		<div class="btn-group">
+			<div ng-repeat="item in cupcakeCtrl.customChoices.frostings" 
+					class="ingred-thumb btn btn-default btn-block" ng-click="cupcakeCtrl.frostingChoice(item.description, item.id)">
+				<img class= "text-center"ng-src="{{cupcakeCtrl.frostingSrc(item.description)}}"
+					style="width: 50px; height: 50px; display: inline" uib-btn-checkbox>{{item.description}}</img>
+			</div>
+		</div>
+		</uib-accordion-group> <uib-accordion-group heading="Sprinkles">
+		<div class="btn-group">
+			<div ng-repeat="item in cupcakeCtrl.customChoices.sprinkles" class="ingred-thumb btn btn-default btn-block"
+				ng-click="cupcakeCtrl.sprinkleChoice(item.description, item.id)">
+				<img ng-src="{{cupcakeCtrl.sprinkleSrc(item.description, item.id)}}"
+					style="width: 50px; height: 50px; display: inline" uib-btn-checkbox>{{item.description}}</img>
+			</div>
+		</div>
+		</uib-accordion-group> <uib-accordion-group heading="Cups">
+		<div class="btn-group">
+			<div ng-repeat="item in cupcakeCtrl.customChoices.cups" class="ingred-thumb btn btn-default btn-block"
+				ng-click="cupcakeCtrl.cupChoice(item.description, item.id)">
+				<img ng-src="{{cupcakeCtrl.cupSrc(item.description, item.id)}}"
+					style="width: 50px; height: 50px; display: inline" uib-btn-checkbox>{{item.description}}</img>
+			</div>
+		</div>
+		</uib-accordion-group> </uib-accordion>
+	</div>
+</div>
