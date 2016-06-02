@@ -13,13 +13,13 @@ function RegisterUserException(message){
 
 console.log("this file was loaded: app.js");
 angular.module("LuluCC", ['ui.router','ngAnimate','ui.bootstrap'])
-	.constant("loginUrl", "http://localhost:8085/LuluCupcakeService/rest/login")
-	.constant("orderUrl", "http://localhost:8085/LuluCupcakeService/rest/orders")
-	.constant("oUrl", "http://localhost:8085/LuluCupcakeService/rest/order/")
-	.constant("accountUrl","http://localhost:8085/LuluCupcakeService/rest/account")
-	.constant("userinfoUrl","http://localhost:8085/LuluCupcakeService/rest/user/info")
-	.constant("registerUrl", "http://localhost:8085/LuluCupcakeService/rest/register")
-	.constant("ingredientUrl", "http://localhost:8085/LuluCupcakeService/rest/options")
+	.constant("loginUrl", "http://ecommerce-danaugust.rhcloud.com/rest/login")
+	.constant("orderUrl", "http://ecommerce-danaugust.rhcloud.com/rest/orders")
+	.constant("oUrl", "http://ecommerce-danaugust.rhcloud.com/rest/order/")
+	.constant("accountUrl","http://ecommerce-danaugust.rhcloud.com/rest/account")
+	.constant("userinfoUrl","http://ecommerce-danaugust.rhcloud.com/rest/user/info")
+	.constant("registerUrl", "http://ecommerce-danaugust.rhcloud.com/rest/register")
+	.constant("ingredientUrl", "http://ecommerce-danaugust.rhcloud.com/rest/options")
 	.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 		$urlRouterProvider.otherwise('/home');
 		$stateProvider
